@@ -1,0 +1,5 @@
+1MB/5Mb/10MB
+porównanie czasów dla 3 funkcji skrótu
+kryterium sac - czy po zmianie bitu DLA JEDNEJ funkcji
+wiadomosć M - skrót 12bitów 20btiów ... 256 bitów
+kolejne 1000 wiadomości i szukamy kolizji

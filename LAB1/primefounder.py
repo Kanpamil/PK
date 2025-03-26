@@ -18,7 +18,7 @@ def sieve_of_eratosthenes(limit):
     return primes
 
 # Call the function and get all primes between 0 and 10000
-primes = sieve_of_eratosthenes(10000)
+primes = sieve_of_eratosthenes(100000)
 
 # Output the result
 print(primes)

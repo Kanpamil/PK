@@ -27,23 +27,26 @@ def single_bits(rseq):
     return False
 def series(rseq):
     ser = {1:0,2:0,3:0,4:0,5:0,6:0}
-    current = rseq[0]
+    intervals = {1:[2315,2685], 2:[1114,1386], 3:[527,723], 4:[240,384], 5:[103,209], 6:[103,209]}
     count = 0
     for bit in rseq:
-        if bit == current:
+        if bit == 1:
             count += 1
-        else:
+        elif count > 0:
             if count > 5:
                 ser[6] +=1
             else:
                 ser[count] += 1
-            count = 1
-            current = bit
+            count = 0
     if count > 5:
-                ser[6] +=1
-    else:
+        ser[6] +=1
+    elif count > 0:
         ser[count] += 1
-    print(ser)
+    
+    for i in range(1,7):
+        if ser[i] < intervals[i][0] and ser[i] > intervals[i][1]:
+            return False
+    return True
 
 def long_series(rseq):
     current = rseq[0]
@@ -72,20 +75,27 @@ def poker_test(rseq):
             fourBits[number] = 1
             
     x = 0
+    print(fourBits)
     for i in range (0,16):
-        x = x + fourBits[i]**2
+        if i in fourBits:
+            x = x + fourBits[i]**2
     x = (x * (16 / n)) - n
-
+    print(x)
     if x > 2.16 and x < 46.17:
         return True
     return False
 
-p = 8581
-q = 6199
+p = 40597
+q = 52363
 N = p * q
 rsequence = bbs(20000, p, q)
 
 print(single_bits(rsequence))
-series(rsequence)
+print(series(rsequence))
 print(long_series(rsequence))
 print(poker_test(rsequence))
+
+seq = "12345678"
+for i in range(0, len(seq)//2):
+        word = seq[i*4:i*4+4]
+        print(word)
