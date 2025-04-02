@@ -73,7 +73,6 @@ print(m)
 message = randString(50)
 print(message)
 emsg = encryptMsg(message,eKey,n)
-print(emsg)
 dmsg = decryptMsg(emsg,dKey,n)
 print(dmsg)
 
