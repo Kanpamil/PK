@@ -1,11 +1,7 @@
 import random
 import math
 import string
-def find_relatively_prime(N):
-    while True:
-        x = random.randint(1, N-1)
-        if math.gcd(x, N) == 1:
-            return x
+
         
 def sito(limit):
     primes = []
@@ -20,7 +16,7 @@ def sito(limit):
     
     return primes
 
-def find_coprime_prime(phi):
+def findCoprimePrime(phi):
     if phi < 2:
         raise ValueError("Argument musi być większy lub równy 2")
     
@@ -31,6 +27,7 @@ def find_coprime_prime(phi):
             return prime
     
     raise RuntimeError("Nie znaleziono odpowiedniej liczby pierwszej")
+
 def randString(size):
     res = ''
     for _ in range(size):
@@ -38,10 +35,11 @@ def randString(size):
     return res
 
 def encrypt(m,e,n):
-    return m**e % n
+    return pow(m,e,n)
 
 def decrypt(c, d, n):
-    return c**d % n
+    return pow(c,d,n)
+
 def encryptMsg(msg,e,n):
     res = []
     for i in range(0, len(msg)):
@@ -56,23 +54,27 @@ def decryptMsg(emsg, d, n):
         res += chr(char)
     return res
         
-p = 577
-q = 307
+# p = 577
+# q = 307
+p = 1861
+q = 4111
+
 n = p * q
 phi = (p - 1)* (q - 1)
-eKey = find_coprime_prime(phi)
+eKey = findCoprimePrime(phi)
 dKey = pow(eKey,-1,phi)
 
-message = 13
-print(message)
-c = encrypt(message,eKey,n)
-print(c)
-m = decrypt(c,dKey,n)
-print(m)
+# message = 13
+# print(message)
+# c = encrypt(message,eKey,n)
+# print(c)
+# m = decrypt(c,dKey,n)
+# print(m)
 
 message = randString(50)
 print(message)
 emsg = encryptMsg(message,eKey,n)
+print(emsg)
 dmsg = decryptMsg(emsg,dKey,n)
 print(dmsg)
 

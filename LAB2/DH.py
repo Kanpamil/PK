@@ -1,23 +1,20 @@
 import random
 
-n = 919
-g = 7
+n = 919 #liczba pierwsza
+g = 7 #pierwisatek pierwotny
 
-x = random.randint(450,1000)
-print(x)
-X = g**x % n
-y = random.randint(450,1000)
-Y = g**y % n
+x = random.randint(450,100000)#klucz prywatny a
 
+X = pow(g,x,n)
+y = random.randint(450,100000)#klucz prywatny b
+Y = pow(g,y,n)
+
+#przesłanie Y do a oraz X do b
 ak = pow(Y,x,n)
 bk = pow(X,y,n)
 
 
-print(ak)
-print(bk)
-
-
-print(f" liczba a: {x}, klucz A: {ak}")
-print(f" liczba b: {y}, klucz B: {bk}")
+print(f" klucz prywatny A: {x}, klucz publiczny B: {X}, klucz wspolny A: {ak}")
+print(f" klucz prywatny B: {y}, klucz publiczny A: {Y}, klucz wspolny B: {bk}")
 
 

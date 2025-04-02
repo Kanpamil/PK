@@ -25,6 +25,7 @@ def single_bits(rseq):
     if count > 9725 and count < 10275:
         return True
     return False
+
 def series(rseq):
     ser = {1:0,2:0,3:0,4:0,5:0,6:0}
     intervals = {1:[2315,2685], 2:[1114,1386], 3:[527,723], 4:[240,384], 5:[103,209], 6:[103,209]}
@@ -75,27 +76,27 @@ def poker_test(rseq):
             fourBits[number] = 1
             
     x = 0
-    print(fourBits)
+    # print(fourBits)
     for i in range (0,16):
         if i in fourBits:
             x = x + fourBits[i]**2
     x = (x * (16 / n)) - n
-    print(x)
+    # print(x)
     if x > 2.16 and x < 46.17:
         return True
     return False
 
-p = 40597
-q = 52363
+
+# p = 61
+# q = 97
+p = 1861
+q = 4111
+# p = 40597
+# q = 52363
 N = p * q
 rsequence = bbs(20000, p, q)
 
-print(single_bits(rsequence))
-print(series(rsequence))
-print(long_series(rsequence))
-print(poker_test(rsequence))
-
-seq = "12345678"
-for i in range(0, len(seq)//2):
-        word = seq[i*4:i*4+4]
-        print(word)
+print(f"single bits: {single_bits(rsequence)}")
+print(f"series: {series(rsequence)}")
+print(f"long_series:{long_series(rsequence)}")
+print(f"poker test: {poker_test(rsequence)}")

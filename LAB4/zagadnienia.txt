@@ -1,0 +1,16 @@
+AES 
+ECB - nadaje się tylko do szyforwania wiadomości nie dłuższej niż długość bloku
+CBC - Initial Value + wiadomość potem zamiast initial value wynik działania poprzedniej, po wykryciu błędu przerwanie
+CTR - 
+
+
+Sprawozdanie
+1. 3Pliki 1MB 5MB 10MB
+    czas szyfrowania i deszyfrowania dla ECB/CBC/CTR
+
+2. Propagacja błędów
+    ile bloków, bitów będzie uszkodzonych, po uszkodzeniu wiadomości - szyfrowanie
+
+    ile bloków, bitów będzie uszkodzonych, po uszkodzeniu szyfrogramu - deszyfrowanie
+
+3. Implementacja trybu CBC za pomocą ECB - zrobić sprzężenie
