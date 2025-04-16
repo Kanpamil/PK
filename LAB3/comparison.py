@@ -93,7 +93,3 @@ plt.show()
 print(md5_times)
 print(sha1_times)
 print(sha256_times)
-    
-
-# Przykład użycia
-text = "Hello, World!"

@@ -1,0 +1,46 @@
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
+import random
+import string
+
+def xor_bytes(a, b):
+    return bytes(i ^ j for i, j in zip(a, b))
+
+def cbc_encrypt_via_ecb(plaintext, key, iv):
+    cipher_ecb = AES.new(key, AES.MODE_ECB)
+    plaintext = pad(plaintext, AES.block_size)
+    blocks = [plaintext[i:i+16] for i in range(0, len(plaintext), 16)]
+    ciphertext = b''
+    prev = iv
+
+    for block in blocks:
+        xored = xor_bytes(block, prev)
+        enc = cipher_ecb.encrypt(xored)
+        ciphertext += enc
+        prev = enc
+    return ciphertext
+
+def cbc_decrypt_via_ecb(ciphertext, key, iv):
+    cipher_ecb = AES.new(key, AES.MODE_ECB)
+    blocks = [ciphertext[i:i+16] for i in range(0, len(ciphertext), 16)]
+    plaintext = b''
+    prev = iv
+
+    for block in blocks:
+        dec = cipher_ecb.decrypt(block)
+        xored = xor_bytes(dec, prev)
+        plaintext += xored
+        prev = block
+    return unpad(plaintext, AES.block_size)
+
+
+key = get_random_bytes(16)
+iv = get_random_bytes(16)
+plaintext = b'This is CBC via ECB mode!' * 2
+
+ciphertext = cbc_encrypt_via_ecb(plaintext, key, iv)
+decrypted = cbc_decrypt_via_ecb(ciphertext, key, iv)
+print(decrypted.strip())
+
+print("\nCBC via ECB poprawnosc:", decrypted.strip() == plaintext)
