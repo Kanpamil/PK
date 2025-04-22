@@ -1,0 +1,4 @@
+l/m mod p = l* m^(-1) mod p - użyć pow odwrotności
+
+shamir - bierzemy kartke biało czarną. Piksel po pikselu dodajemy do udziałów. Zamieniamy piksel na dwa piksele(biało czarny lub czarno biały). 
+Losujemy w nim z 1/2 który ląduje w udziale 1, a do udziału 2 dajemy przeciwny(do weryfikacji - nie wiem czy dobrze zrozumiałem)

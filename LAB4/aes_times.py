@@ -15,9 +15,6 @@ def generateRandomTxt(sizeMB):
         res.append(random.choice(string.ascii_letters))
     return ''.join(res)
 
-def read_file(filename):
-    with open(filename, 'rb') as f:
-        return f.read()
 
 def encrypt_decrypt(cipher_mode, data):
     key = get_random_bytes(16)
@@ -58,7 +55,6 @@ def encrypt_decrypt(cipher_mode, data):
     decrypted = cipher.decrypt(ciphertext)
     end_dec = time.perf_counter()
     gc.enable()
-    # print(decrypted.decode('utf-8'))
     decrypted = unpad(decrypted, AES.block_size)
     
 
